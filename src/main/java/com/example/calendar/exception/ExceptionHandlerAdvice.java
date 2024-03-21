@@ -20,7 +20,6 @@ public class ExceptionHandlerAdvice {
 	public ResponseEntity<Object> handleAll(Exception ex, WebRequest request) {
 		ResponseBean rt = new ResponseBean();
 		rt.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value() + "");
-		rt.setErrCode("ERR_EXCEPTION");
 		rt.setMessage(ex.getMessage());
 		return new ResponseEntity<Object>(rt, new HttpHeaders(), HttpStatus.OK);
 	}
@@ -33,14 +32,12 @@ public class ExceptionHandlerAdvice {
 		BindingResult result = ex.getBindingResult();
 		ResponseError err = new ResponseError();
 		result.getFieldErrors().forEach(error -> {
-			err.setCodeError(error.getField());
 			err.setValueError(error.getRejectedValue());
 			err.setMessageError(error.getDefaultMessage());
 		});
 		ResponseError responseErrors = CommonFn.convertMessageSizrForEntity(err, result.getTarget(),
 				result.getFieldError().getField());
 		rt.setMessage(responseErrors.getMessageError());
-		rt.setErrCode(result.getFieldError().getDefaultMessage());
 		return new ResponseEntity<Object>(rt, new HttpHeaders(), HttpStatus.OK);
 	}
 }

@@ -14,22 +14,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RegisterRequest {
 
-	@Size(max = 64, min = 5, message = "ACCOUNT-SIZE")
+	@NotNull(message = "Account không được để trống")
+	@Size(max = 64, min = 5)
 	private String account;
 
 	@NotNull(message = "Password không được để trống")
-	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&*!])[A-Za-z\\d@#$%^&*!]{8,}$",
-			message = "Password không đúng định dạng")
-	@Size(max = 20, min = 8, message = "PASSWORD-SIZE")
 	private String password;
 
 	@Email(message = "Email không đúng định dạng")
 	@Size(max = 128)
 	private String email;
 
-	@Size(max = 128, min = 2)
-	private String name;
-	
-	private String token;
 	
 }

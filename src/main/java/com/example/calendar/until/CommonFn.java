@@ -125,7 +125,6 @@ public class CommonFn {
 					error.setColumn(colNameEN);
 				error.setMessageError(violation.getMessage());
 				error.setValueError(violation.getInvalidValue());
-				error.setCodeError(violation.getMessage());
 				String fieldName = violation.getPropertyPath().toString();
 				error = convertMessageSizrForEntity(error, obj, fieldName);
 				listErr.add(error);

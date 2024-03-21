@@ -9,7 +9,6 @@ public class ResponseError {
 	private Object column;
 	private Object valueError;
 	private String messageError;
-	private String codeError;
 
 	public ResponseError() {
 	}
@@ -26,6 +25,5 @@ public class ResponseError {
 		this.column = column;
 		this.valueError = valueError;
 		this.messageError = messageError;
-		this.codeError = codeError;
 	}
 }
