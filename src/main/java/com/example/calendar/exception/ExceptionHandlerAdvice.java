@@ -40,4 +40,11 @@ public class ExceptionHandlerAdvice {
 		rt.setMessage(responseErrors.getMessageError());
 		return new ResponseEntity<Object>(rt, new HttpHeaders(), HttpStatus.OK);
 	}
+	
+	@ExceptionHandler({ BadRequestException.class })
+	public ResponseEntity<Object> handleBadRequestException(BadRequestException ex, WebRequest request) {
+		ResponseBean rt = new ResponseBean(HttpStatus.BAD_REQUEST.value() + "", ex.getMessage(), ex.getMessage());
+		rt.setData(ex.getData());
+		return new ResponseEntity<Object>(rt, new HttpHeaders(), HttpStatus.OK);
+	}
 }

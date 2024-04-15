@@ -9,4 +9,6 @@ import com.example.calendar.entity.Users;
 public interface UserRepository extends JpaRepository<Users, String> {
 
 	Optional<Users> findById(String id);
+	
+	Optional<Users> findFirstByAccount(String account);
 }
